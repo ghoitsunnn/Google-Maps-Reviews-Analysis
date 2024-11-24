@@ -7,16 +7,17 @@ from textblob import TextBlob
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
+import math 
 
 # --- Streamlit configuration ---
 st.title("Where.com")
 st.text("where are you going today?")
 
 api_key = 'AIzaSyDwGOdRil8IydOWPUs7FDBhmMLUMgaR4kw'  # Replace with your actual Google Maps API key
+api_keyw = 'a9f8bd68c3c0c5ccc934a6f6e725b575'
 
 location = st.text_input("Enter the name of the location:")
-
-place_url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={location}&inputtype=textquery&fields=place_id&key={api_key}"
+place_url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={location}&inputtype=textquery&fields=place_id,geometry&key={api_key}" 
 
 # Get the place data
 response = requests.get(place_url)
@@ -40,6 +41,44 @@ if place_data.get('candidates'):
                 return analysis.sentiment.polarity  # Return polarity score
 
             sentiments = [analyze_sentiment(review.get('text', '')) for review in reviews]
+
+            # --- weather ---
+            def get_weather(api_keyw, lat, lon):
+                """Mendapatkan data cuaca menggunakan latitude dan longitude."""
+                url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_keyw}"
+                response = requests.get(url).json()
+    
+                temp = response['main']['temp']
+                temp = math.floor((temp * 1.8) - 459.67)  
+    
+                feels_like = response['main']['feels_like']
+                feels_like = math.floor((feels_like * 1.8) - 459.67)  
+    
+                humidity = response['main']['humidity']
+    
+                weather_description = response['weather'][0]['description'] 
+    
+                weather_icon = response['weather'][0]['icon']
+    
+                return temp, feels_like, humidity, weather_description, weather_icon 
+            
+            # --- Get latitude and longitude ---
+
+            latitude = place_data["candidates"][0]["geometry"]["location"]["lat"]
+            longitude = place_data["candidates"][0]["geometry"]["location"]["lng"]
+
+            # --- get the weather data ---
+            temp, feels_like, humidity, weather_description, weather_icon = get_weather(api_keyw, latitude, longitude) 
+
+            st.write(f"Informasi Cuaca dan Tempat {location}")
+   
+            # --- display the data ---
+            st.write(f"Temperature: {temp} F Feels Like: {feels_like} F   Humidity: {humidity} % ")
+            st.write(f"weather: {weather_description} % ")
+                
+            # image of the weather
+            icon_url = f"http://openweathermap.org/img/wn/{weather_icon}@2x.png" 
+            st.image(icon_url, width=200)
 
             # --- Create DataFrame with Sentiments ---
             df = pd.DataFrame(reviews)
