@@ -27,6 +27,7 @@ location = st.text_input("Enter the name of the location:", st.session_state.inp
 if st.button("Submit"):
     # Update nilai variabel input di session state
     st.session_state.input_text = location
+
 place_url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={location}&inputtype=textquery&fields=place_id,geometry&key={api_key}" 
 
 # Get the place data
