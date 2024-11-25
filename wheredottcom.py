@@ -13,8 +13,8 @@ import math
 st.title("Where.com")
 st.text("where are you going today?")
 
-api_key = st.secrets["gmaps_token"],  # Replace with your actual API key
-api_keyw = st.secrets["weather_token"],
+api_key = st.secrets["some_key1"],  # Replace with your actual API key
+api_keyw = st.secrets["some_key2"],
 
 location = st.text_input("Enter the name of the location:")
 place_url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={location}&inputtype=textquery&fields=place_id,geometry&key={api_key}" 
