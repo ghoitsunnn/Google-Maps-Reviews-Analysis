@@ -72,7 +72,7 @@ if place_data.get('candidates'):
             # --- get the weather data ---
             temp, feels_like, humidity, weather_description, weather_icon = get_weather(api_keyw, latitude, longitude) 
 
-            st.write(f"Informasi Cuaca dan Tempat {location}")
+            st.write(f"Weather information in {location}")
             
             # --- display the data ---
             col1, col2, col3 = st.columns(3)  # Membuat 3 kolom
@@ -128,7 +128,7 @@ if place_data.get('candidates'):
             all_reviews_text = " ".join([review.get('text', '') for review in reviews])
             wordcloud = WordCloud(background_color='mintcream', width=1500, height=600, colormap='viridis', max_words=50).generate(all_reviews_text)
         
-            st.header("what do they say about this place?")
+            st.header(f"what do they say about {location}")
             fig, ax = plt.subplots()
             ax.imshow(wordcloud, interpolation='bilinear')
             ax.axis('off')
