@@ -17,6 +17,7 @@ api_key = st.secrets["some_key1"],  # Replace with your actual API key
 api_keyw = st.secrets["some_key2"],
 
 location = st.text_input("Enter the name of the location:")
+st.button("Enter")
 place_url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={location}&inputtype=textquery&fields=place_id,geometry&key={api_key}" 
 
 # Get the place data
