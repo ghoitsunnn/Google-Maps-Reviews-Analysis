@@ -75,7 +75,7 @@ if place_data.get('candidates'):
             st.write(f"Informasi Cuaca dan Tempat {location}")
             
             # --- display the data ---
-            st.metric(label="Temperature", value="{temp} °F", delta="{feels_like} °F")
+            st.metric(label="Temperature", value="f{temp} °F", delta="f{feels_like} °F")
     
             # image of the weather
             icon_url = f"http://openweathermap.org/img/wn/{weather_icon}@2x.png" 
