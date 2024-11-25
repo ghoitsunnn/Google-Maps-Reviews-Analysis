@@ -21,12 +21,12 @@ if "location" not in st.session_state:
     st.session_state.location = ""
 
 # Input lokasi dengan st.text_input
-location_input = st.text_input("Enter the name of the location:", st.session_state.location)
+location = st.text_input("Enter the name of the location:", st.session_state.location)
 
 # Tombol Submit
 if st.button("Submit"):
     # Update nilai lokasi di session state
-    st.session_state.location = location_input
+    st.session_state.location = location
     # Jalankan kode selanjutnya dengan lokasi yang diinputkan
     # ... (kode Anda untuk memproses lokasi) ...
 
