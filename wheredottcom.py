@@ -73,14 +73,18 @@ if place_data.get('candidates'):
             temp, feels_like, humidity, weather_description, weather_icon = get_weather(api_keyw, latitude, longitude) 
 
             st.write(f"Informasi Cuaca dan Tempat {location}")
-   
-            # --- display the data ---
-            st.write(f"Temperature: {temp} F Feels Like: {feels_like} F   Humidity: {humidity} % ")
-            st.write(f"weather: {weather_description} % ")
-                
+
             # image of the weather
             icon_url = f"http://openweathermap.org/img/wn/{weather_icon}@2x.png" 
             st.image(icon_url, width=200)
+            
+            # --- display the data ---
+            col1, col2, col3 = st.columns(3)
+                col1.metric("Temperature", "{temp} °F", "{feels_like} °F")
+                col2.metric("weather","{weather_description}")
+                col3.metric("Humidity", "{humidity} %")
+    
+        
 
             # --- Create DataFrame with Sentiments ---
             df = pd.DataFrame(reviews)
