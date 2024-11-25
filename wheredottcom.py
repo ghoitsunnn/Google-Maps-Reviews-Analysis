@@ -9,15 +9,13 @@ import plotly.express as px
 import pandas as pd
 import math 
 
-# --- Streamlit configuration ---
 st.title("Where.com")
 st.text("where are you going today?")
 
-api_key = st.secrets["some_key1"],  # Replace with your actual API key
-api_keyw = st.secrets["some_key2"],
+api_key = 'AIzaSyDwGOdRil8IydOWPUs7FDBhmMLUMgaR4kw'  # Replace with your actual Google Maps API key
+api_keyw = 'a9f8bd68c3c0c5ccc934a6f6e725b575'
 
-location = st.text_input("Enter the name of the location:") 
-
+location = st.text_input("Enter the name of the location:")
 place_url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={location}&inputtype=textquery&fields=place_id,geometry&key={api_key}" 
 
 # Get the place data
