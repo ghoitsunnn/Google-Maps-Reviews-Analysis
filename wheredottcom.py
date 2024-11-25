@@ -21,20 +21,16 @@ if "location" not in st.session_state:
     st.session_state.location = ""
 
 # Input lokasi dengan st.text_input
-location = st.text_input("Enter the name of the location:", st.session_state.location)
+st.text_input("Enter the name of the location:", st.session_state.location)
 
 # Tombol Submit
 if st.button("Submit"):
     # Update nilai lokasi di session state
     st.session_state.location = location
     # Jalankan kode selanjutnya dengan lokasi yang diinputkan
-    # ... (kode Anda untuk memproses lokasi) ...
+    place_url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={location}&inputtype=textquery&fields=place_id,geometry&key={api_key}" 
 
-# Akses lokasi dari session state
-if st.session_state.location:
-    location = st.session_state.location
 
-place_url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={location}&inputtype=textquery&fields=place_id,geometry&key={api_key}" 
 
 # Get the place data
 response = requests.get(place_url)
