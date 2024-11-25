@@ -83,14 +83,11 @@ if place_data.get('candidates'):
             with col2:
                  st.metric("Humidity", f"{humidity} %")# Menampilkan feels like di kolom 2
 
-            with col3:
-                 icon_url = f"http://openweathermap.org/img/wn/{weather_icon}@2x.png" 
-                st.image(icon_url, width=200)
-                st.write(f"weather: {weather_description}") # Menampilkan humidity di kolom 3
-
     
             # image of the weather
-            
+            icon_url = f"http://openweathermap.org/img/wn/{weather_icon}@2x.png" 
+            st.image(icon_url, width=200)
+            st.write(f"weather: {weather_description}")
 
             # --- Create DataFrame with Sentiments ---
             df = pd.DataFrame(reviews)
