@@ -75,11 +75,22 @@ if place_data.get('candidates'):
             st.write(f"Informasi Cuaca dan Tempat {location}")
             
             # --- display the data ---
-            st.metric(label="Temperature", value= " temp °F", delta="f{feels_like} °F")
+            col1, col2, col3 = st.columns(3)  # Membuat 3 kolom
+
+            with col1:
+                st.metric("Temperature", f"{temp} F")  # Menampilkan suhu di kolom 1
+
+            with col2:
+                st.metric("Feels Like", f"{feels_like} F")  # Menampilkan feels like di kolom 2
+
+            with col3:
+                st.metric("Humidity", f"{humidity} %")  # Menampilkan humidity di kolom 3
+
     
             # image of the weather
             icon_url = f"http://openweathermap.org/img/wn/{weather_icon}@2x.png" 
             st.image(icon_url, width=200)
+            st.write(f"Kondisi Cuaca: {weather_description}")
 
             # --- Create DataFrame with Sentiments ---
             df = pd.DataFrame(reviews)
