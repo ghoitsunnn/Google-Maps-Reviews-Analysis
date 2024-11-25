@@ -128,8 +128,7 @@ if place_data.get('candidates'):
             all_reviews_text = " ".join([review.get('text', '') for review in reviews])
             wordcloud = WordCloud(background_color='mintcream', width=1500, height=600, colormap='viridis', max_words=50).generate(all_reviews_text)
         
-            st.write(f"what do they say")
-            st.write(f"about {location}?")
+            st.write(f"what do they say about {location}?")
             fig, ax = plt.subplots()
             ax.imshow(wordcloud, interpolation='bilinear')
             ax.axis('off')
