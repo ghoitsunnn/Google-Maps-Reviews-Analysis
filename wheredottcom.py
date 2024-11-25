@@ -75,10 +75,7 @@ if place_data.get('candidates'):
             st.write(f"Informasi Cuaca dan Tempat {location}")
             
             # --- display the data ---
-            col1, col2, col3 = st.columns(3)
-                col1.metric(f"Temperature", "{temp} °F", "{feels_like} °F")
-                col2.metric(f"weather","{weather_description}")
-                col3.metric(f"Humidity", "{humidity} %")
+            st.metric(label="Temperature", value="{temp} °F", delta="{feels_like} °F")
     
             # image of the weather
             icon_url = f"http://openweathermap.org/img/wn/{weather_icon}@2x.png" 
