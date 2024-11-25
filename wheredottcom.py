@@ -82,6 +82,10 @@ if place_data.get('candidates'):
 
             with col2:
                  st.metric("Humidity", f"{humidity} %")# Menampilkan feels like di kolom 2
+                
+            with col3:
+                icon_url = f"http://openweathermap.org/img/wn/{weather_icon}@2x.png"
+                st.image(icon_url, caption=weather_description, width=100)
 
     
             # image of the weather
