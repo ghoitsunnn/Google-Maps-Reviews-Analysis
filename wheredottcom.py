@@ -128,14 +128,14 @@ if place_data.get('candidates'):
             all_reviews_text = " ".join([review.get('text', '') for review in reviews])
             wordcloud = WordCloud(background_color='mintcream', width=1500, height=600, colormap='viridis', max_words=50).generate(all_reviews_text)
         
-            st.header(f"what do they say about {location}")
+            st.write(f"what do they say about {location}")
             fig, ax = plt.subplots()
             ax.imshow(wordcloud, interpolation='bilinear')
             ax.axis('off')
             st.pyplot(fig)
 
             # --- Display Sentiment Results in Table ---
-            st.header("Sentiment Analysis Results")
+            st.write("Sentiment Analysis Results")
             st.dataframe(df[['author_name', 'text', 'sentiment']])
 
             # --- Display Sentiment Counts ---
