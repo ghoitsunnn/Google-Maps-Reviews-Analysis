@@ -16,21 +16,9 @@ st.text("where are you going today?")
 api_key = st.secrets["some_key1"],  # Replace with your actual API key
 api_keyw = st.secrets["some_key2"],
 
-# Inisialisasi variabel lokasi di session state
-if "location" not in st.session_state:
-    st.session_state.location = ""
+location = st.text_input("Enter the name of the location:") 
 
-# Input lokasi dengan st.text_input
-st.text_input("Enter the name of the location:", st.session_state.location)
-
-# Tombol Submit
-if st.button("Submit"):
-    # Update nilai lokasi di session state
-    st.session_state.location = location
-    # Jalankan kode selanjutnya dengan lokasi yang diinputkan
-    place_url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={location}&inputtype=textquery&fields=place_id,geometry&key={api_key}" 
-
-
+place_url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={location}&inputtype=textquery&fields=place_id,geometry&key={api_key}" 
 
 # Get the place data
 response = requests.get(place_url)
