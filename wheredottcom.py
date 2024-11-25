@@ -17,7 +17,7 @@ api_key = st.secrets["some_key1"],  # Replace with your actual API key
 api_keyw = st.secrets["some_key2"],
 
 # Inisialisasi variabel input dengan nilai awal kosong
-if "input_text" not in st.session_state:
+if "location" not in st.session_state:
     st.session_state.input_text = ""
 
 # Tampilkan input text
