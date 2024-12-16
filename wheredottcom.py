@@ -116,14 +116,6 @@ if place_data.get('candidates'):
                 marker=dict(line=dict(color='#000000', width=1))  # Add black border to segments
             )
 
-            fig.update_layout(
-                title_x=0.5,
-                showlegend=False,  # Hide the legend
-                font=dict(family="Arial", size=14),
-                plot_bgcolor='rgba(0,0,0,0)',  # Transparent background
-                paper_bgcolor='rgba(0,0,0,0)'
-            )
-
             st.plotly_chart(fig)
 
             # --- Word Cloud ---
