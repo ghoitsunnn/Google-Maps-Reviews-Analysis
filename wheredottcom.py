@@ -117,7 +117,6 @@ if place_data.get('candidates'):
             )
 
             fig.update_layout(
-                title_text='Sentiment Distribution',
                 title_x=0.5,
                 showlegend=False,  # Hide the legend
                 font=dict(family="Arial", size=14),
